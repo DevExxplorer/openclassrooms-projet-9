@@ -1,1 +1,1 @@
-# openclassrooms-projet-8
+# Openclassrooms: Développez une application Web en utilisant Django
