@@ -1,0 +1,23 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+     <div class="header">
+        <h1>LITReview</h1>
+    </div>
+    <div class="content">
+        <div class="subscribe">
+            <h2>Inscrivez-vous maintenant</h2>
+            <button>S'inscrire</button>
+        </div>
+        <div class="login">
+            <h2>Connectez-vous</h2>
+            <form action="" method="post">
+                <label for="name_user"></label>
+                <input type="text" name="name_user" id="name_user">
+                <label for="pass_user"></label>
+                <input type="password" name="pass_user" id="pass_user">
+                <input type="submit" value="Se connecter">
+            </form>
+        </div>
+    </div>
+{% endblock %}
