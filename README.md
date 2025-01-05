@@ -4,14 +4,19 @@
 ***
 Activez l'environnement et installez les packages à l'aide du fichier requirements.txt :
 ```
-$ python -m venv <environment name>
-$ source <environment name>/bin/activate
-$ pip install -r requirements.txt
+python -m venv <environment name>
+source <environment name>/bin/activate
+pip install -r requirements.txt
 ```
 
 ## Utilisation
 ***
 Pour lancer l'application:
+```bash
+cd litrevu && python manage.py runserver
 ```
-$ python main.py
+
+Pour lancer la compilation des fichiers sass en css:
+```bash
+cd litrevu &&  python manage.py sass app/static/app/scss/ app/static/app/css/ --watch
 ```
