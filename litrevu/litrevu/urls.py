@@ -23,4 +23,5 @@ urlpatterns = [
     path("", views.home, name="home"),
     path("inscription/", views.subscribe),
     path("flux/", views.flux, name="flux"),
+    path("creation-ticket/", views.new_ticket, name="creation-ticket"),
 ]

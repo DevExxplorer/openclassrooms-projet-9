@@ -6,6 +6,16 @@
          <link rel="stylesheet" href="{% static 'app/css/app.css' %}" />
     </head>
     <body>
+        <header>
+            <nav class="menu">
+                <ul>
+                    <li><a href="/flux" title="Lien vers la page flux">Flux</a></li>
+                    <li><a href="#" title="Lien vers la page posts">Posts</a></li>
+                    <li><a href="#" title="Lien vers la page abonnements">Abonnements</a></li>
+                    <li><a href="/" title="Lien vers la page se déconnecter">Se déconnecter</a></li>
+                </ul>
+            </nav>
+        </header>
         <div class="wrapper">
             {% block content %}{% endblock %}
         </div>
