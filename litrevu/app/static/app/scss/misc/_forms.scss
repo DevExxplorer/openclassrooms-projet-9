@@ -1,0 +1,59 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include size-sm {
+    align-items: flex-end;
+  }
+
+  p {
+    width: 100%;
+  }
+
+  label {
+    display: none;
+  }
+
+  .errorlist {
+    display: none;
+  }
+
+  input {
+    margin-bottom: 10px;
+    font-family: $primary-font;
+    font-size: 1.9rem;
+    text-align: center;
+    color: black;
+
+    &::placeholder {
+      color: black;
+    }
+  }
+
+  input[type="text"],
+  input[type="password"]
+  {
+    width: 100%;
+    height: 40px;
+    border: 2px solid black;
+  }
+
+  input[type="submit"] {
+    margin: auto 0;
+    padding: 10px 40px;
+    border: 2px solid black;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+    font-family: $primary-font;
+    font-weight: bold;
+    box-shadow: 3px 3px 5px 0 rgba(0,0,0,0.75);
+    cursor: pointer;
+
+    @include size-md {
+      width: 50%;
+      padding: 10px 55px;
+    }
+  }
+}

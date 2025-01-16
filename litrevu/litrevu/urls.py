@@ -17,11 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app import views
+from authentificate import views as views_authentificate
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.home, name="home"),
-    path("inscription/", views.subscribe),
+    path("inscription/", views_authentificate.subscribe),
     path("flux/", views.flux, name="flux"),
     path("creation-ticket/", views.new_ticket, name="creation-ticket"),
 ]

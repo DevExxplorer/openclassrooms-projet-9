@@ -1,0 +1,13 @@
+header {
+  padding: 30px;
+  border-bottom: 3px solid black;
+
+  .title {
+    display: flex;
+    justify-content: center;
+
+    h1 {
+      font-family: $primary-font;
+    }
+  }
+}
