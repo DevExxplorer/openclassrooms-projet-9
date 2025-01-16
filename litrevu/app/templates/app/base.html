@@ -2,21 +2,31 @@
 
 <html lang="fr">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>LITReview</title>
-         <link rel="stylesheet" href="{% static 'app/css/app.css' %}" />
+        <link rel="stylesheet" href="{% static 'app/css/app.css' %}" />
     </head>
     <body>
-        <header>
-            <nav class="menu">
-                <ul>
-                    <li><a href="/flux" title="Lien vers la page flux">Flux</a></li>
-                    <li><a href="#" title="Lien vers la page posts">Posts</a></li>
-                    <li><a href="#" title="Lien vers la page abonnements">Abonnements</a></li>
-                    <li><a href="/" title="Lien vers la page se déconnecter">Se déconnecter</a></li>
-                </ul>
-            </nav>
-        </header>
         <div class="wrapper">
+            <header>
+                <div class="title">
+                    <h1>LITReview</h1>
+                </div>
+            </header>
+            <!--
+            <header>
+                <nav class="menu">
+                    <ul>
+                        <li><a href="/flux" title="Lien vers la page flux">Flux</a></li>
+                        <li><a href="#" title="Lien vers la page posts">Posts</a></li>
+                        <li><a href="#" title="Lien vers la page abonnements">Abonnements</a></li>
+                        <li><a href="/" title="Lien vers la page se déconnecter">Se déconnecter</a></li>
+                    </ul>
+                </nav>
+            </header>
+            -->
+
             {% block content %}{% endblock %}
         </div>
     </body>

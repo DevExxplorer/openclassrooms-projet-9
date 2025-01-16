@@ -1,0 +1,20 @@
+// Desktop (1054px)
+@mixin size-lg {
+  @media (min-width: 1054px) {
+    @content;
+  }
+}
+
+// Tablet (788px)
+@mixin size-md {
+  @media (min-width: 788px) {
+    @content;
+  }
+}
+
+// Mobile (456px)
+@mixin size-sm {
+  @media (min-width: 456px) {
+    @content;
+  }
+}

@@ -2,23 +2,24 @@
 
 {% load static %}
 {% block content %}
-    <!--<div class="header">
-        <img src="{% static 'app/img/banner.png' %}" alt="My image">
-    </div>-->
-    <div class="content">
-        <div class="subscribe">
-            <h2>Inscrivez-vous maintenant</h2>
-            <div class="btn">
-                <a href="/inscription">S'inscrire</a>
+    <div class="home-content">
+        <div class="home-content__bloc">
+            <div class="home-content__bloc__subscribe">
+                <h2>Inscrivez-vous maintenant</h2>
+                <div class="btn">
+                    <a href="/inscription">S'inscrire</a>
+                </div>
             </div>
         </div>
-        <div class="login">
-            <h2>Connectez-vous</h2>
-            <form action="" method="post" novalidate>
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Se connecter">
-            </form>
+        <div class="home-content__bloc">
+            <div class="home-content__bloc__login">
+                <h2>Connectez-vous</h2>
+                <form action="" method="post" novalidate>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Se connecter">
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -1,0 +1,21 @@
+.btn {
+  display: flex;
+  justify-content: center;
+
+  a {
+    padding: 10px 55px;
+    border: 2px solid black;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+    font-family: $primary-font;
+    font-weight: bold;
+    box-shadow: 3px 3px 5px 0 rgba(0,0,0,0.75);
+    cursor: pointer;
+    transition: all .2s ease-in;
+
+    &:hover {
+      padding: 10px 65px;
+    }
+  }
+}
