@@ -20,7 +20,7 @@ def home(request):
         else:
             pass
     else:
-        form = LoginForm(request.POST)
+        form = LoginForm()
 
     return render(
         request,

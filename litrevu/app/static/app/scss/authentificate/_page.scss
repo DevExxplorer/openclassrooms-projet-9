@@ -1,0 +1,26 @@
+.subscribe {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 50px auto;
+
+  h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  &__form {
+    &__buttons {
+      display: flex;
+      margin-top: 20px;
+
+      .btn {
+        margin-right: 20px;
+      }
+
+      input[type="submit"] {
+        margin: 0;
+      }
+    }
+  }
+}

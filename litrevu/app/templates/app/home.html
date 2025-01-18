@@ -16,7 +16,9 @@
                 <h2>Connectez-vous</h2>
                 <form action="" method="post" novalidate>
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    {% for field in form %}
+                       {% include 'app/field_form.html' with field=field %}
+                    {% endfor %}
                     <input type="submit" value="Se connecter">
                 </form>
             </div>
