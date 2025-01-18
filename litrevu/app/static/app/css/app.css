@@ -45,6 +45,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
 @media (min-width: 456px) {
@@ -53,44 +54,44 @@ form {
   }
 }
 
-form p {
+form .field-form {
   width: 100%;
 }
 
-form label {
-  display: none;
+form .field-form .error_message {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: red;
 }
 
-form .errorlist {
-  display: none;
-}
-
-form input {
-  margin-bottom: 10px;
+form .field-form input {
+  margin-top: 15px;
   font-family: "Montserrat", monospace;
   font-size: 1.9rem;
   text-align: center;
   color: black;
+  border-radius: 3px;
 }
 
-form input::placeholder {
+form .field-form input::placeholder {
   color: black;
 }
 
-form input[type="text"],
-form input[type="password"] {
+form .field-form input[type="text"],
+form .field-form input[type="password"] {
   width: 100%;
   height: 40px;
   border: 2px solid black;
 }
 
 form input[type="submit"] {
-  margin: auto 0;
-  padding: 10px 40px;
+  margin: 15px 0;
+  padding: 10px 55px;
   border: 2px solid black;
   border-radius: 5px;
   text-decoration: none;
   color: black;
+  font-size: 1.8rem;
   font-family: "Montserrat", monospace;
   font-weight: bold;
   box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.75);
@@ -157,6 +158,31 @@ header .title h1 {
   display: flex;
   flex-direction: column;
   width: 70%;
+}
+
+.subscribe {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 50px auto;
+}
+
+.subscribe h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.subscribe__form__buttons {
+  display: flex;
+  margin-top: 20px;
+}
+
+.subscribe__form__buttons .btn {
+  margin-right: 20px;
+}
+
+.subscribe__form__buttons input[type="submit"] {
+  margin: 0;
 }
 
 * {

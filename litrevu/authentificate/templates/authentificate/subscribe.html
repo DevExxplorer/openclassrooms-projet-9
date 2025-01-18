@@ -1,0 +1,19 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <div class="subscribe">
+        <h2>Inscrivez-vous</h2>
+        <form action="" method="post" class="subscribe__form">
+            {% csrf_token %}
+            {% for field in form %}
+               {% include 'app/field_form.html' with field=field %}
+            {% endfor %}
+            <div class="subscribe__form__buttons">
+                <div class="btn">
+                    <a href="/">Retourner</a>
+                </div>
+                <input type="submit" value="S'inscrire">
+            </div>
+        </form>
+    </div>
+{% endblock %}

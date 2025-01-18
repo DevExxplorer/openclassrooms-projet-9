@@ -1,0 +1,6 @@
+<div class="field-form">
+    {{ field }}
+    {% for error in field.errors %}
+        <span class="error_message">{{ error }}</span>
+    {% endfor %}
+</div>

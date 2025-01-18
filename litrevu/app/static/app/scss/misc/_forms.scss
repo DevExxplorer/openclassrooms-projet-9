@@ -2,50 +2,51 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 
   @include size-sm {
     align-items: flex-end;
   }
 
-  p {
+  .field-form {
     width: 100%;
-  }
 
-  label {
-    display: none;
-  }
+    .error_message {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: red;
+    }
 
-  .errorlist {
-    display: none;
-  }
-
-  input {
-    margin-bottom: 10px;
-    font-family: $primary-font;
-    font-size: 1.9rem;
-    text-align: center;
-    color: black;
-
-    &::placeholder {
+    input {
+      margin-top: 15px;
+      font-family: $primary-font;
+      font-size: 1.9rem;
+      text-align: center;
       color: black;
+      border-radius: 3px;
+
+      &::placeholder {
+        color: black;
+      }
+    }
+
+    input[type="text"],
+    input[type="password"]
+    {
+      width: 100%;
+      height: 40px;
+      border: 2px solid black;
     }
   }
 
-  input[type="text"],
-  input[type="password"]
-  {
-    width: 100%;
-    height: 40px;
-    border: 2px solid black;
-  }
-
   input[type="submit"] {
-    margin: auto 0;
-    padding: 10px 40px;
+    margin: 15px 0;
+    padding: 10px 55px;
     border: 2px solid black;
     border-radius: 5px;
     text-decoration: none;
     color: black;
+    font-size: 1.8rem;
     font-family: $primary-font;
     font-weight: bold;
     box-shadow: 3px 3px 5px 0 rgba(0,0,0,0.75);

@@ -16,6 +16,6 @@ def subscribe(request):
 
     return render(
         request,
-        'app/subscribe.html',
+        'authentificate/subscribe.html',
         {'form': form}
     )
