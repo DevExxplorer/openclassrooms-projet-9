@@ -27,3 +27,9 @@ def home(request):
         'app/home.html',
         {'form': form}
     )
+
+def flux(request):
+    return render(
+        request,
+        'app/flux.html',
+    )
