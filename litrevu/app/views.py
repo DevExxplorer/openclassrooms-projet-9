@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm, TicketForm, ReviewForm
+from .forms import LoginForm
 
 def home(request):
     if request.method == 'POST':
@@ -26,46 +26,4 @@ def home(request):
         request,
         'app/home.html',
         {'form': form}
-    )
-
-def flux(request):
-    if request.user.is_authenticated:
-        pass
-    else:
-        print('Error')
-
-    return render(
-        request,
-        'app/flux.html',
-    )
-
-def new_ticket(request):
-    if request.method == 'POST':
-        ticket_form = TicketForm(request.POST, request.FILES)
-        review_form = ReviewForm(request.POST)
-
-        if ticket_form.is_valid() and review_form.is_valid():
-            # Sauvegarder le Ticket
-            ticket = ticket_form.save(commit=False)
-            ticket.user = request.user
-            ticket.save()
-
-            # Sauvegarder la Review liée au Ticket
-            review = review_form.save(commit=False)
-            review.ticket = ticket
-            review.user = request.user
-            review.save()
-
-            return redirect('home')
-    else:
-        ticket_form = TicketForm()
-        review_form = ReviewForm()
-
-    return render(
-        request,
-        'app/creation-ticket.html',
-        {
-            'ticket_form': ticket_form,
-            'review_form': review_form,
-        }
     )
