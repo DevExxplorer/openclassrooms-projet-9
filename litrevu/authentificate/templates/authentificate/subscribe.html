@@ -6,7 +6,7 @@
         <form action="" method="post" class="subscribe__form">
             {% csrf_token %}
             {% for field in form %}
-               {% include 'app/field_form.html' with field=field %}
+               {% include 'app/field_form.html' with field=field show_label=show_label %}
             {% endfor %}
             <div class="subscribe__form__buttons">
                 <div class="btn">

@@ -1,4 +1,7 @@
 <div class="field-form">
+    {% if show_label %}
+        <label>{{ field.label }}</label>
+    {% endif %}
     {{ field }}
     {% for error in field.errors %}
         <span class="error_message">{{ error }}</span>

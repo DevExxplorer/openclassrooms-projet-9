@@ -9,7 +9,11 @@ form {
   }
 
   .field-form {
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    margin-top: 15px;
+    text-align: left;
 
     .error_message {
       font-size: 1.4rem;
@@ -17,13 +21,12 @@ form {
       color: red;
     }
 
-    input {
-      margin-top: 15px;
+    input,
+    textarea{
+      margin-top: 5px;
       font-family: $primary-font;
       font-size: 1.9rem;
-      text-align: center;
       color: black;
-      border-radius: 3px;
 
       &::placeholder {
         color: black;
@@ -31,30 +34,56 @@ form {
     }
 
     input[type="text"],
-    input[type="password"]
-    {
+    input[type="password"],
+    textarea {
       width: 100%;
       height: 40px;
-      border: 2px solid black;
+      padding: 5px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100%;
+    }
+
+    .radio_input {
+      display: flex;
+      justify-content: space-between;
+      width: 80%;
+
+      label {
+        display: flex;
+        align-items: center;
+
+        input {
+          margin: 0 10px;
+        }
+      }
     }
   }
 
-  input[type="submit"] {
+  input[type="submit"],
+  input[type=file]::file-selector-button {
     margin: 15px 0;
-    padding: 10px 55px;
-    border: 2px solid black;
+    padding: 10px 35px;
+    border: 1px solid black;
     border-radius: 5px;
     text-decoration: none;
-    color: black;
+    background-color: white;
     font-size: 1.8rem;
     font-family: $primary-font;
-    font-weight: bold;
-    box-shadow: 3px 3px 5px 0 rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.75);
     cursor: pointer;
-
-    @include size-md {
-      width: 50%;
-      padding: 10px 55px;
-    }
   }
+
+  input[type=file]::file-selector-button {
+    margin-right: 20px;
+  }
+}
+
+.separate {
+  width: 100%;
+  height: 1px;
+  margin: 50px 0;
+  background-color: black;
 }

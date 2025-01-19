@@ -1,0 +1,26 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <div class="ticket-form">
+        <h2>{{ title }}</h2>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% for field_ticket in form_ticket %}
+               {% include 'app/field_form.html' with field=field_ticket show_label=show_label %}
+            {% endfor %}
+
+            {% if review_form %}
+                <div class="separate"></div>
+            {% endif %}
+
+            {% if form_review %}
+                {% for field_review in form_review %}
+                   {% include 'app/field_form.html' with field=field_review show_label=show_label %}
+                {% endfor %}
+            {% endif %}
+
+            <input type="submit" value="Envoyer">
+        </form>
+    </div>
+{% endblock %}
