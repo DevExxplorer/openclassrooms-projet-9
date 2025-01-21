@@ -1,0 +1,28 @@
+.followers {
+  width: 90%;
+  margin: 50px auto;
+
+  h2 {
+    text-align: center;
+  }
+
+  &__research {
+    form {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+
+      .field-form {
+        margin-top: 0;
+
+        input[type="search"] {
+          width: 95%;
+          height: 50px;
+          font-size: 1.8rem;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
