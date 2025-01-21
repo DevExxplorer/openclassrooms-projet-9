@@ -81,14 +81,6 @@ form .field-form textarea::placeholder {
   color: black;
 }
 
-form .field-form input[type="text"],
-form .field-form input[type="password"],
-form .field-form textarea {
-  width: 100%;
-  height: 40px;
-  padding: 5px;
-}
-
 form .field-form textarea {
   width: 100%;
   height: 100%;
@@ -107,6 +99,15 @@ form .field-form .radio_input label {
 
 form .field-form .radio_input label input {
   margin: 0 10px;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="search"],
+form textarea {
+  width: 100%;
+  height: 40px;
+  padding: 5px;
 }
 
 form input[type="submit"],
@@ -233,6 +234,33 @@ header .title h1 {
 
 .ticket-form form {
   margin: 40px 0;
+}
+
+.followers {
+  width: 90%;
+  margin: 50px auto;
+}
+
+.followers h2 {
+  text-align: center;
+}
+
+.followers__research form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.followers__research form .field-form {
+  margin-top: 0;
+}
+
+.followers__research form .field-form input[type="search"] {
+  width: 95%;
+  height: 50px;
+  font-size: 1.8rem;
+  text-align: center;
 }
 
 * {
