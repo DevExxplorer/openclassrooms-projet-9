@@ -12,7 +12,7 @@ urlpatterns = [
     path("", app_views.home, name="home"),
     path("inscription/", auth_views.subscribe),
     path("creation-ticket/<int:form_number>", login_required(ticket_views.display_ticket_form)),
-    path("flux/", app_views.flux, name="flux"),
+    path("flux/", login_required(app_views.flux), name="flux"),
     path("404/", error_views.error),
     path("abonnements/", login_required(followers_views.page_views)),
 ]

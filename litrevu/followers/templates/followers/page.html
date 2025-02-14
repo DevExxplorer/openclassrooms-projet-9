@@ -12,17 +12,22 @@
                 {% endfor %}
                 <input type="submit" value="Envoyer">
             </form>
+            <div class="message">{{message_form}}</div>
         </div>
         <div class="followers__subscribe">
             <h2>Abonnements</h2>
             <div>
-                <p>Aucun Abonnement</p>
+                {% for user in list_users.following %}
+                   {{ user }}
+                {% endfor %}
             </div>
         </div>
         <div class="followers__subscriber">
             <h2>Abonnés</h2>
              <div>
-                <p>Aucun Abonné</p>
+                 {% for user in list_users.followed%}
+                   {{ user }}
+                {% endfor %}
             </div>
         </div>
     </div>

@@ -29,7 +29,13 @@ def home(request):
     )
 
 def flux(request):
+
     return render(
         request,
         'app/flux.html',
+    )
+
+def get_users_viewable_tickets(user):
+    return Ticket.objects.filter(
+        models.Q(user=user) | models.Q(public=True)
     )

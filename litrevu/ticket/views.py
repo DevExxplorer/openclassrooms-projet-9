@@ -6,7 +6,6 @@ def display_ticket_form(request, form_number):
         'Créer un ticket',
         'Créer un ticket et sa critique'
     )
-
     data_form = create_ticket_form(request, form_number)
 
     return render(
