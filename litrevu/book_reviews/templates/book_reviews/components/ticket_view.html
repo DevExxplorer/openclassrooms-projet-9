@@ -1,0 +1,23 @@
+<div class="bloc_ticket card">
+    <div class="bloc_ticket__infos">
+        {% if ticket == True or ticket == "True" %}
+            {% if post.user_logged_in %}
+                <span>Vous avez publié une critique</span>
+            {% else %}
+                <span>{{ post.author }} a demandé une critique</span>
+            {% endif %}
+        {% else %}
+            <span>Ticket - {{ post.author }}</span>
+        {% endif %}
+        {{ post.date }}
+    </div>
+    <div class="bloc_ticket__title">{{ post.title }}</div>
+    <div class="bloc_ticket__description">
+        <p>{{ post.description }}</p>
+    </div>
+    {% if button_hide == False or ticket == "False" %}
+        <div class="bloc_ticket__btn btn">
+            <a href="{% url 'creation-critique-answer' id_ticket=post.id %}" title="">Créer une critique</a>
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,81 @@
+.ticket-form {
+  width: 90%;
+  margin: 30px auto;
+  text-align: center;
+
+  .answer-ticket {
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 2px solid black;
+    border-radius: 5px;
+
+    p {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .bloc_ticket {
+      width: 80%;
+      margin: 0 auto 15px auto;
+      text-align: left;
+
+      &__image {
+        img {
+          width: 100%;
+          height: 100px;
+        }
+      }
+    }
+  }
+
+  form {
+    margin: 40px 0;
+  }
+}
+
+.flux {
+  width: 60%;
+  margin: 50px auto;
+
+  &__btns {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+
+  &__posts {
+    .bloc_review {
+      &__infos {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+      }
+      &__description {
+        margin-bottom: 15px;
+        p {
+          margin: 10px 0;
+        }
+      }
+    }
+  }
+}
+
+.bloc_ticket {
+  &__infos {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  &__btn {
+    display: flex;
+    justify-content: flex-end;
+    margin: 30px 15px 15px 0
+  }
+}
+
+.card {
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 2px solid black;
+  border-radius: 5px;
+}

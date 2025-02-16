@@ -1,0 +1,30 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <div class="ticket-form">
+        <h2>{{ title }}</h2>
+        {% if page == 'review_answer' %}
+            <div class="answer-ticket">
+                <p>Vous êtes entrain de poster en réponse à</p>
+                {% include 'book_reviews/components/ticket_view.html' with post=tickets button_hide=True %}
+            </div>
+        {% endif %}
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% if page != 'review_answer' %}
+                {% for field in tickets %}
+                    {% include 'app/field_form.html' with field=field show_label=show_label %}
+                {% endfor %}
+            {% endif %}
+
+            {% if reviews %}
+                <div class="separate"></div>
+                {% for field in reviews %}
+                   {% include 'app/field_form.html' with field=field show_label=show_label %}
+                {% endfor %}
+            {% endif %}
+            <input type="submit" value="Envoyer">
+        </form>
+    </div>
+{% endblock %}

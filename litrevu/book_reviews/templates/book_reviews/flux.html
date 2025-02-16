@@ -1,0 +1,24 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+{% block content %}
+    <div class="flux">
+        <div class="flux__btns">
+            <div class="btn">
+                <a href="/creation-ticket" title="">Demander une critique</a>
+            </div>
+            <div class="btn">
+                <a href="/creation-critique" title="">Créer une critique</a>
+            </div>
+        </div>
+        <div class="flux__posts">
+            {% for post in posts %}
+                {% if post.type == 'ticket' %}
+                    {% include 'book_reviews/components/ticket_view.html' with post=post ticket=True button_hide=False %}
+                {% else %}
+                    {% include 'book_reviews/components/review_view.html' with post=post %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ErrorConfig(AppConfig):
+class BookReviewsConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "error"
+    name = "book_reviews"
