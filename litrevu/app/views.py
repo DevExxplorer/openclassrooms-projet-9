@@ -16,14 +16,18 @@ def home(request):
                 login(request, user)
                 return redirect("flux")
             else:
-                pass
+                message = 'Ce compte n\'existe pas'
         else:
-            pass
+            message = 'Identifiant ou Mot de passe invalide'
     else:
         form = LoginForm()
+        message = ''
 
     return render(
         request,
         'app/home.html',
-        {'form': form}
+        {
+            'form': form,
+            'message': message
+        }
     )

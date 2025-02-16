@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout, login
 from .forms import SubscribeForm
 
 def subscribe(request):

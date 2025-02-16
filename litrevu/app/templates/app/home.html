@@ -19,6 +19,7 @@
                     {% for field in form %}
                        {% include 'app/field_form.html' with field=field %}
                     {% endfor %}
+                    <div class="warning">{{ message }}</div>
                     <input type="submit" value="Se connecter">
                 </form>
             </div>

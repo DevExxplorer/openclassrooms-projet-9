@@ -34,11 +34,12 @@
   font-weight: bold;
   box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.75);
   cursor: pointer;
-  transition: all .2s ease-in;
 }
 
-.btn a:hover {
-  padding: 10px 65px;
+.warning {
+  color: red;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 form {
@@ -136,6 +137,7 @@ form input[type=file]::file-selector-button {
 }
 
 header {
+  position: relative;
   padding: 30px;
   border-bottom: 3px solid black;
 }
@@ -147,6 +149,27 @@ header .title {
 
 header .title h1 {
   font-family: "Montserrat", monospace;
+}
+
+header .menu {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+header .menu ul {
+  display: flex;
+}
+
+header .menu ul li {
+  margin-right: 30px;
+  list-style-type: none;
+}
+
+header .menu ul li a {
+  color: black;
+  text-decoration: none;
 }
 
 .home-content {
