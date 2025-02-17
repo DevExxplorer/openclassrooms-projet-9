@@ -317,10 +317,11 @@ header .menu ul li a {
 
 .followers {
   width: 90%;
-  margin: 50px auto;
+  margin: 100px auto;
 }
 
 .followers h2 {
+  margin-bottom: 25px;
   text-align: center;
 }
 
@@ -340,6 +341,56 @@ header .menu ul li a {
   height: 50px;
   font-size: 1.8rem;
   text-align: center;
+}
+
+.followers__research form .field-form input[type="search"]::placeholder {
+  color: #A9A9A9;
+}
+
+.followers .list_users__item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.followers .list_users__item .name,
+.followers .list_users__item .link {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.followers .list_users__item .name {
+  width: 90%;
+}
+
+.followers .list_users__item .name-subscriber {
+  width: 100%;
+}
+
+.followers .list_users__item .link {
+  width: 10%;
+  cursor: pointer;
+}
+
+.followers .list_users__item .link:hover {
+  background-color: black;
+}
+
+.followers .list_users__item .link:hover a {
+  color: white;
+}
+
+.followers .list_users__item .link a {
+  display: flex;
+  justify-content: center;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+}
+
+.followers__research,
+.followers__subscribe,
+.followers__subscriber {
+  margin-bottom: 50px;
 }
 
 * {

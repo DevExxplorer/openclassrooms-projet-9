@@ -16,17 +16,24 @@
         </div>
         <div class="followers__subscribe">
             <h2>Abonnements</h2>
-            <div>
+            <div class="list_users">
                 {% for user in list_users.following %}
-                   {{ user }}
+                   <div class="list_users__item">
+                       <div class="name"><span>{{ user }}</span></div>
+                       <div class="link">
+                           <a href="" title="Se désabonner">Désabonner</a>
+                       </div>
+                   </div>
                 {% endfor %}
             </div>
         </div>
         <div class="followers__subscriber">
             <h2>Abonnés</h2>
-             <div>
+             <div class="list_users">
                  {% for user in list_users.followed%}
-                   {{ user }}
+                    <div class="list_users__item">
+                       <div class="name name-subscriber"><span>{{ user }}</span></div>
+                   </div>
                 {% endfor %}
             </div>
         </div>
