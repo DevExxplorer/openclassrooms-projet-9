@@ -7,7 +7,7 @@
 @import "views/home";
 
 @import "authentificate/page";
-@import "book_reviews/page";
+@import "ticket/page";
 @import "followers/page";
 
 * {
@@ -38,4 +38,10 @@ body {
 
 img {
     max-width: 100%;
+}
+
+.border {
+    padding: 15px;
+    border: 2px solid black;
+    border-radius: 5px;
 }

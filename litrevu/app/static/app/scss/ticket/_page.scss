@@ -4,10 +4,7 @@
   text-align: center;
 
   .answer-ticket {
-    padding: 15px;
     margin-bottom: 15px;
-    border: 2px solid black;
-    border-radius: 5px;
 
     p {
       margin-bottom: 15px;
@@ -40,42 +37,25 @@
   &__btns {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
   }
 
   &__posts {
-    .bloc_review {
+    .ticket {
+      margin: 15px 0;
       &__infos {
         display: flex;
         justify-content: space-between;
         margin-bottom: 15px;
       }
-      &__description {
+      &__title {
         margin-bottom: 15px;
-        p {
-          margin: 10px 0;
-        }
+      }
+      &__btn {
+        display: flex;
+        justify-content: flex-end;
+        margin: 30px 15px 15px 0
       }
     }
   }
-}
-
-.bloc_ticket {
-  &__infos {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-  }
-  &__btn {
-    display: flex;
-    justify-content: flex-end;
-    margin: 30px 15px 15px 0
-  }
-}
-
-.card {
-  padding: 15px;
-  margin-bottom: 15px;
-  border: 2px solid black;
-  border-radius: 5px;
 }

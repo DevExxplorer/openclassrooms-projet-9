@@ -12,12 +12,8 @@
             </div>
         </div>
         <div class="flux__posts">
-            {% for post in posts %}
-                {% if post.type == 'ticket' %}
-                    {% include 'book_reviews/components/ticket_view.html' with post=post ticket=True button_hide=False %}
-                {% else %}
-                    {% include 'book_reviews/components/review_view.html' with post=post %}
-                {% endif %}
+            {% for ticket in tickets %}
+                {% include 'tickets/ticket.html' with ticket=ticket %}
             {% endfor %}
         </div>
     </div>

@@ -245,10 +245,7 @@ header .menu ul li a {
 }
 
 .ticket-form .answer-ticket {
-  padding: 15px;
   margin-bottom: 15px;
-  border: 2px solid black;
-  border-radius: 5px;
 }
 
 .ticket-form .answer-ticket p {
@@ -279,40 +276,27 @@ header .menu ul li a {
 .flux__btns {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 }
 
-.flux__posts .bloc_review__infos {
+.flux__posts .ticket {
+  margin: 15px 0;
+}
+
+.flux__posts .ticket__infos {
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
 }
 
-.flux__posts .bloc_review__description {
+.flux__posts .ticket__title {
   margin-bottom: 15px;
 }
 
-.flux__posts .bloc_review__description p {
-  margin: 10px 0;
-}
-
-.bloc_ticket__infos {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-}
-
-.bloc_ticket__btn {
+.flux__posts .ticket__btn {
   display: flex;
   justify-content: flex-end;
   margin: 30px 15px 15px 0;
-}
-
-.card {
-  padding: 15px;
-  margin-bottom: 15px;
-  border: 2px solid black;
-  border-radius: 5px;
 }
 
 .followers {
@@ -421,4 +405,10 @@ body {
 
 img {
   max-width: 100%;
+}
+
+.border {
+  padding: 15px;
+  border: 2px solid black;
+  border-radius: 5px;
 }

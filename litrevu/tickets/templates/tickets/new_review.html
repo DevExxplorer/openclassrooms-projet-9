@@ -1,0 +1,36 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <div class="ticket-form">
+        <h2>{{ title }}</h2>
+        <div class="answer-ticket border">
+            <p>Vous êtes entrain de poster en réponse à</p>
+            <div class="border">
+                <div class="ticket">
+                    <div class="ticket__infos">
+                        <span>{{ ticket.author }} a demandé une critique</span>
+                        <span class="date">{{ ticket.date }}</span>
+                    </div>
+                    <div class="ticket__title">
+                        <h3>{{ ticket.title }}</h3>
+                    </div>
+                    <div class="ticket__description">
+                        <p>{{ ticket.description }}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% if review %}
+                <div class="separate"></div>
+                {% for field in review %}
+                   {% include 'app/field_form.html' with field=field show_label=show_label %}
+                {% endfor %}
+            {% endif %}
+            <input type="submit" value="Envoyer">
+        </form>
+    </div>
+{% endblock %}

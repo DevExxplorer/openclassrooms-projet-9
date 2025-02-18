@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django_sass',
     'authentificate',
     'followers',
-    'book_reviews'
+    'tickets'
 ]
 
 MIDDLEWARE = [
