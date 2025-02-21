@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   src: url("/static/app/fonts/Montserrat-Regular.ttf") format("truetype");
   font-family: "Montserrat";
@@ -25,14 +26,16 @@
 }
 
 .btn a {
-  padding: 10px 55px;
-  border: 2px solid black;
+  padding: 10px 35px;
+  border: 1px solid black;
   border-radius: 5px;
   text-decoration: none;
-  color: black;
+  background-color: white;
+  font-size: 1.8rem;
   font-family: "Montserrat", monospace;
   font-weight: bold;
-  box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.75);
+  color: black;
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.75);
   cursor: pointer;
 }
 
@@ -121,6 +124,7 @@ form input[type=file]::file-selector-button {
   background-color: white;
   font-size: 1.8rem;
   font-family: "Montserrat", monospace;
+  font-weight: bold;
   box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.75);
   cursor: pointer;
 }
@@ -268,35 +272,124 @@ header .menu ul li a {
   margin: 40px 0;
 }
 
-.flux {
+.posts {
   width: 60%;
   margin: 50px auto;
 }
 
-.flux__btns {
+.posts h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.posts__buttons {
   display: flex;
   justify-content: space-around;
   margin-bottom: 60px;
 }
 
-.flux__posts .ticket {
-  margin: 15px 0;
+.posts__list {
+  text-align: center;
 }
 
-.flux__posts .ticket__infos {
+.posts__list__empty {
+  font-size: 3rem;
+}
+
+.post,
+.bloc_review {
+  margin: 0 0 15px 0;
+}
+
+.post__infos,
+.bloc_review__infos {
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
 }
 
-.flux__posts .ticket__title {
+.post__infos .date,
+.bloc_review__infos .date {
+  font-style: italic;
+}
+
+.post__description p,
+.bloc_review__description p {
+  text-align: left;
+}
+
+.post__description img,
+.bloc_review__description img {
+  margin-top: 15px;
+  width: 20%;
+  height: auto;
+}
+
+.post__title,
+.bloc_review__title {
+  display: flex;
+  align-items: end;
   margin-bottom: 15px;
 }
 
-.flux__posts .ticket__btn {
+.post__title .headline,
+.bloc_review__title .headline {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.post__title .line,
+.bloc_review__title .line {
+  margin: 0 15px 5px 10px;
+  font-size: 2rem;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.post__title .rating,
+.bloc_review__title .rating {
+  display: inline-block;
+}
+
+.post__title .rating .star,
+.bloc_review__title .rating .star {
+  font-size: 4rem;
+  line-height: 1;
+  vertical-align: middle;
+  color: #ccc;
+}
+
+.post__title .rating[data-rating="1"] .star:nth-child(1),
+.post__title .rating[data-rating="2"] .star:nth-child(-n+2),
+.post__title .rating[data-rating="3"] .star:nth-child(-n+3),
+.post__title .rating[data-rating="4"] .star:nth-child(-n+4),
+.post__title .rating[data-rating="5"] .star:nth-child(-n+5),
+.bloc_review__title .rating[data-rating="1"] .star:nth-child(1),
+.bloc_review__title .rating[data-rating="2"] .star:nth-child(-n+2),
+.bloc_review__title .rating[data-rating="3"] .star:nth-child(-n+3),
+.bloc_review__title .rating[data-rating="4"] .star:nth-child(-n+4),
+.bloc_review__title .rating[data-rating="5"] .star:nth-child(-n+5) {
+  color: #f39c12;
+  /* Couleur de l'étoile pleine */
+}
+
+.post__btn,
+.bloc_review__btn {
   display: flex;
   justify-content: flex-end;
   margin: 30px 15px 15px 0;
+}
+
+.post .buttons_post,
+.bloc_review .buttons_post {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.post .buttons_post .btn a,
+.bloc_review .buttons_post .btn a {
+  margin: 0 10px;
 }
 
 .followers {

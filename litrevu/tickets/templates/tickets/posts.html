@@ -1,0 +1,30 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+{% block content %}
+    <div class="posts">
+        {% if page == 'flux' %}
+            <div class="posts__buttons btn">
+                <a href="{% url 'ticket_create' %}" title="Demander une critique">Demander une critique</a>
+                <a href="{% url 'review_create' %}" title="Créer une critique">Créer une critique</a>
+            </div>
+        {% else %}
+            <h2>Vos posts</h2>
+        {% endif %}
+        <div class="posts__list">
+            {% if posts %}
+                {% if page == 'posts' %}
+                    <div class="border">
+                {% endif %}
+                    {% for post in posts %}
+                        {% include 'tickets/post.html' with post=post page=page %}
+                    {% endfor %}
+                {% if page == 'posts' %}
+                    </div>
+                {% endif %}
+            {% else %}
+                <span class="posts__list__empty">Aucun ticket</span>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

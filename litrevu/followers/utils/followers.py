@@ -49,20 +49,12 @@ def list_followers(authenticate_user):
     users_following = authenticate_user.following.all()
 
     for user_following in users_following:
-        list_users['following'].append(user_following.followed_user.username)
+        list_users['following'].append(user_following.followed_user)
 
     # Utilisateur qui nous suit
     users_followed = authenticate_user.subscription.all()
 
     for user_followed in users_followed:
-        list_users['followed'].append(user_followed.user.username)
-
-    '''
-    # Remplace les listes vides par un message
-    if not list_users['following']:
-        list_users['following'] = "Aucun abonnement"
-    if not list_users['followed']:
-        list_users['followed'] = "Aucun abonné"
-    '''
+        list_users['followed'].append(user_followed.user)
 
     return list_users

@@ -1,0 +1,39 @@
+{% load static %}
+
+<!-- Affichage de la review avec les données du ticket lié -->
+ <div class="post__review">
+    <div class="bloc_review">
+        <div class="bloc_review__infos">
+            <span>{{ post.author }} a publié une critique</span>
+            <span class="date">{{ post.date }}</span>
+        </div>
+        <div class="bloc_review__title">
+            <div class="headline">{{ post.headline }}</div>
+            <span class="line">-</span>
+            <div class="rating" data-rating="{{ post.rating }}">
+                <span class="star">&#x2605;</span>
+                <span class="star">&#x2605;</span>
+                <span class="star">&#x2605;</span>
+                <span class="star">&#x2605;</span>
+                <span class="star">&#x2605;</span>
+            </div>
+        </div>
+        <div class="bloc_review__description">
+            <p>{{ post.body }}</p>
+        </div>
+    </div>
+    <div class="post border">
+         <div class="post__infos">
+            <span>Ticket - {{ post.user.username }}</span>
+        </div>
+        <div class="post__title">
+            <h3>{{ post.ticket.title }}</h3>
+        </div>
+        <div class="post__description">
+            <p>{{ post.ticket.description }}</p>
+            {% if post.image %}
+                <img src="{{ MEDIA_URL }}{{ post.image }}" alt="">
+            {% endif %}
+        </div>
+    </div>
+</div>

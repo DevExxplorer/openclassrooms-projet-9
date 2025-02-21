@@ -1,5 +1,7 @@
+from django.shortcuts import get_object_or_404
 from django.db.models import Value, CharField
 from app.utils.helpers import update_format_date, get_name_author
+from followers.models import UserFollows
 from tickets.models import Ticket, Review
 
 
@@ -14,9 +16,11 @@ def get_posts(user):
           list: Liste triée des tickets et reviews, classés par date de création décroissante.
     """
 
-    # Récupération des tickets et reviews
-    tickets = Ticket.objects.all().annotate(content_type=Value('TICKET', CharField()))
-    reviews = Review.objects.all().annotate(content_type=Value('REVIEW', CharField()))
+    # Récupération des tickets et reviews en fonction des abonnés suivi
+    followed_users = UserFollows.objects.filter(user=user).values_list('followed_user', flat=True)
+    followed_users = list(followed_users) + [user.id]
+    tickets = Ticket.objects.filter(user__in=followed_users).annotate(content_type=Value('TICKET', CharField()))
+    reviews = Review.objects.filter(user__in=followed_users).annotate(content_type=Value('REVIEW', CharField()))
 
     # Transformation des données (mise à jour avec la fonction update_data)
     posts = []
@@ -56,4 +60,14 @@ def update_data(data, user):
     data.date = update_format_date(data.time_created)
     data.author = get_name_author(data.user_id)
     data.user_logged_in = user.id != data.user.id
+
+    if isinstance(data, Review):
+        ticket = data.ticket
+
+        if data.content_type == 'REVIEW':
+            if hasattr(ticket, 'image') and ticket.image:
+                data.image = ticket.image
+            else:
+                data.image = ''
+
     return data

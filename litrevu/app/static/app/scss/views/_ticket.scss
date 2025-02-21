@@ -1,0 +1,133 @@
+.ticket-form {
+  width: 90%;
+  margin: 30px auto;
+  text-align: center;
+
+  .answer-ticket {
+    margin-bottom: 15px;
+
+    p {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .bloc_ticket {
+      width: 80%;
+      margin: 0 auto 15px auto;
+      text-align: left;
+
+      &__image {
+        img {
+          width: 100%;
+          height: 100px;
+        }
+      }
+    }
+  }
+
+  form {
+    margin: 40px 0;
+  }
+}
+
+.posts {
+  width: 60%;
+  margin: 50px auto;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 60px;
+  }
+
+  &__list {
+    text-align: center;
+
+    &__empty {
+      font-size: 3rem;
+    }
+  }
+}
+
+.post,
+.bloc_review {
+  margin: 0 0 15px 0;
+
+  &__infos {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+
+    .date {
+      font-style: italic;
+    }
+  }
+  &__description {
+    p {
+      text-align: left;
+    }
+
+    img {
+      margin-top: 15px;
+      width: 20%;
+      height: auto;
+    }
+  }
+  &__title {
+    display: flex;
+    align-items: end;
+    margin-bottom: 15px;
+
+    .headline {
+        font-size: 2.2rem;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    .line{
+      margin: 0 15px 5px 10px;
+      font-size: 2rem;
+      line-height: 1;
+      vertical-align: middle;
+    }
+
+    .rating {
+      display: inline-block;
+
+      .star {
+          font-size: 4rem;
+          line-height: 1;
+          vertical-align: middle;
+          color: #ccc;
+      }
+    }
+    .rating[data-rating="1"] .star:nth-child(1),
+    .rating[data-rating="2"] .star:nth-child(-n+2),
+    .rating[data-rating="3"] .star:nth-child(-n+3),
+    .rating[data-rating="4"] .star:nth-child(-n+4),
+    .rating[data-rating="5"] .star:nth-child(-n+5) {
+        color: #f39c12; /* Couleur de l'étoile pleine */
+    }
+  }
+  &__btn {
+    display: flex;
+    justify-content: flex-end;
+    margin: 30px 15px 15px 0
+  }
+
+  .buttons_post {
+    display: flex;
+    justify-content: flex-end;
+
+    .btn {
+      a {
+        margin: 0 10px;
+      }
+    }
+  }
+}

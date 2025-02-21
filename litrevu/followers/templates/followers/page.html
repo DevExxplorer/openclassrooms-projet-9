@@ -1,6 +1,10 @@
 {% extends 'app/base.html' %}
-
 {% load static %}
+
+{% block bottom_scripts %}
+    <script src="{% static 'followers/js/unsubscribe.js' %}"></script>
+{% endblock %}
+
 {% block content %}
     <div class="followers">
         <div class="followers__research">
@@ -19,9 +23,9 @@
             <div class="list_users">
                 {% for user in list_users.following %}
                    <div class="list_users__item">
-                       <div class="name"><span>{{ user }}</span></div>
-                       <div class="link">
-                           <a href="" title="Se désabonner">Désabonner</a>
+                       <div class="name"><span>{{ user.username }}</span></div>
+                       <div class="link unsubscribe">
+                           <a href="#" data-user_id="{{ user.id }}" title="Se désabonner">Désabonner</a>
                        </div>
                    </div>
                 {% endfor %}

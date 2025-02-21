@@ -1,15 +1,11 @@
+from django.http import JsonResponse
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from authentificate.models import User
 from followers.forms import SearchForm
-from followers.utils.followers_utils import list_followers, add_new_follower
+from followers.utils.followers import list_followers, add_new_follower
+import json
 
-
-@login_required
 def page_views(request):
-    """
-    Vue permettant d'afficher une page avec un formulaire de recherche d'utilisateurs.
-    """
     authenticate_user = request.user
     list_users = list_followers(authenticate_user)
 
@@ -27,7 +23,7 @@ def page_views(request):
     else:
         form = SearchForm(None)
         message_form = ""
-
+    print(list_users)
     return render(
         request,
         'followers/page.html',
@@ -39,3 +35,20 @@ def page_views(request):
         }
     )
 
+def unsubscribe_user(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            user_id = data.get('user_id')
+
+            try:
+                user_remove = User.objects.get(id=user_id)
+                user_remove.delete()
+                return JsonResponse({'success': True, 'message': 'Utilisateur désabonné avec succès!'})
+            except User.DoesNotExist:
+                return JsonResponse({'success': False, 'error': 'Utilisateur non trouvé'}, status=404)
+
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=500)
+
+    return JsonResponse({'success': False, 'error': 'Méthode non autorisée'}, status=405)

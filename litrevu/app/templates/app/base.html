@@ -17,7 +17,7 @@
                     <div class="menu">
                         <ul>
                             <li><a href="/flux" title="Lien vers la page flux">Flux</a></li>
-                            <li><a href="#" title="Lien vers la page posts">Posts</a></li>
+                            <li><a href="/posts" title="Lien vers la page posts">Posts</a></li>
                             <li><a href="/abonnements" title="Lien vers la page abonnements">Abonnements</a></li>
                             <li><a href="{% url 'logout' %}" title="Se déconnecter">Se déconnecter</a></li>
                         </ul>
@@ -26,5 +26,6 @@
             </header>
             {% block content %}{% endblock %}
         </div>
+        {% block bottom_scripts %}{% endblock %}
     </body>
 </html>

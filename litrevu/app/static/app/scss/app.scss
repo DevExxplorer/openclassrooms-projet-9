@@ -5,10 +5,9 @@
 
 @import "views/header";
 @import "views/home";
-
-@import "authentificate/page";
-@import "ticket/page";
-@import "followers/page";
+@import "views/authentificate";
+@import "views/ticket";
+@import "views/followers";
 
 * {
     margin: 0;

@@ -1,0 +1,28 @@
+<div class="post border">
+    <div class="post__infos">
+        {% if post.user_logged_in %}
+            <span>{{ post.author }} a demandé une critique</span>
+        {% else %}
+            <span>Vous avez publié une critique</span>
+        {% endif %}
+        <span class="date">{{ post.date }}</span>
+    </div>
+    <div class="post__title">
+        <h3>{{ post.title }}</h3>
+    </div>
+    <div class="post__description">
+        <p>{{ post.description }}</p>
+        {% if post.image %}
+            <img src="{{ MEDIA_URL }}{{ post.image }}" alt="">
+        {% endif %}
+    </div>
+    {% if not post.has_review and page != 'posts' and page != 'critique'  %}
+        <div class="post__btn btn">
+            <a href="{% url 'ticket_review_create' ticket_pk=post.id %}" title="">Créer une critique</a>
+        </div>
+    {% endif %}
+    {% if page == 'posts' %}
+        <!-- Affichage des buttons "Modifier" et "Supprimer" -->
+        {% include 'tickets/components/buttons_post.html' with id_post=post.id %}
+    {% endif %}
+</div
