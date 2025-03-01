@@ -13,17 +13,30 @@ header {
   }
 
   .menu {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
+    @include size-lg {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+    }
 
     ul {
       display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      @include size-lg {
+        flex-direction: row;
+      }
 
       li {
-        margin-right: 30px;
+        margin-right: 0;
         list-style-type: none;
+
+        @include size-lg {
+          margin-right: 30px;
+        }
+
 
         a {
           color: black;

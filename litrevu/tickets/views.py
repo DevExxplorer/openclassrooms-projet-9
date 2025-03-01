@@ -5,6 +5,7 @@ from tickets.models import Ticket, Review
 from tickets.utils.forms import add_new_data
 from tickets.utils.tickets_manager import update_data, get_posts
 
+
 @login_required
 def tickets(request):
     """
@@ -17,16 +18,17 @@ def tickets(request):
             Retourne la page Flux
     """
     page = request.GET.get('page', 'flux')
-    posts = get_posts(request.user)
+    posts_list = get_posts(request.user)
 
     return render(
         request,
         'tickets/posts.html',
         {
             'page': page,
-            'posts': posts,
+            'posts': posts_list,
         }
     )
+
 
 @login_required
 def posts(request):
@@ -49,6 +51,7 @@ def posts(request):
             'posts': data_posts,
         }
     )
+
 
 @login_required
 def new_ticket(request):
@@ -75,6 +78,7 @@ def new_ticket(request):
             'show_label': True
         }
     )
+
 
 @login_required
 def new_review(request, ticket_pk=None):
@@ -114,6 +118,7 @@ def new_review(request, ticket_pk=None):
         }
     )
 
+
 @login_required
 def update_ticket(request, ticket_pk):
     ticket = get_object_or_404(Ticket, id=ticket_pk)
@@ -131,6 +136,7 @@ def update_ticket(request, ticket_pk):
             'show_label': True
         }
     )
+
 
 @login_required
 def update_review(request, review_pk):
@@ -152,6 +158,7 @@ def update_review(request, review_pk):
             'show_label': True
         }
     )
+
 
 @login_required
 def delete_post(request, id_post):
