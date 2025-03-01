@@ -1,8 +1,13 @@
 .subscribe {
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 90%;
   margin: 50px auto;
+
+  @include size-lg {
+    width: 60%;
+    padding: 100px 0;
+  }
 
   h2 {
     margin-bottom: 20px;
@@ -12,14 +17,37 @@
   &__form {
     &__buttons {
       display: flex;
+      flex-direction: column;
+      width: 100%;
       margin-top: 20px;
 
+      @include size-lg {
+        flex-direction: row;
+      }
+
       .btn {
+        width: 100%;
         margin-right: 20px;
+
+        @include size-lg {
+          width: auto;
+        }
+
+        a {
+          width: 100%;
+
+          @include size-lg {
+            width: auto;
+          }
+        }
       }
 
       input[type="submit"] {
-        margin: 0;
+        margin: 10px 0 0 0;
+
+        @include size-lg {
+          margin: 0;
+        }
       }
     }
   }

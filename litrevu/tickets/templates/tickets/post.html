@@ -1,16 +1,14 @@
-<div class="post">
-    {% if post.content_type == 'TICKET'%}
-        <!-- Affichage du ticket -->
+{% if post.content_type == 'TICKET'%}
+    <div class="ticket post">
         {% include 'tickets/components/ticket.html' with post=post page=page %}
-    {% elif post.content_type == 'REVIEW' %}
-        <div class="border">
-            <!-- Affichage de la review -->
-            {% include 'tickets/components/review.html' with post=post page=page %}
-            {% if page == 'posts' %}
-                <!-- Affichage des buttons "Modifier" et "Supprimer" -->
-                {% include 'tickets/components/buttons_post.html' with id_post=post.id %}
-            {% endif %}
-        </div>
-    {% endif %}
-</div>
+    </div>
+{% elif post.content_type == 'REVIEW' %}
+    <div class="review post" data-ticket-id="{{ post.ticket.id }}">
+        {% include 'tickets/components/review.html' with post=post page=page %}
+        {% if page == 'posts' %}
+            {% include 'tickets/components/buttons_post.html' with post=post %}
+        {% endif %}
+    </div>
+{% endif %}
+
 

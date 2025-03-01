@@ -29,17 +29,15 @@ urlpatterns = [
     path("posts/", login_required(tickets_views.posts), name="posts"),
 
     # Tickets
-
     path('tickets/creation/', login_required(tickets_views.new_ticket), name='ticket_create'),
-    # path('tickets/<int:pk>/', login_required(tickets_views.new_review), name='ticket_detail'),
+    path('ticket/modification/<int:ticket_pk>', login_required(tickets_views.update_ticket), name='ticket_update'),
+    path('ticket/<int:ticket_pk>/review/', login_required(tickets_views.new_review), name='ticket_review_create'),
+    path('ticket/<int:id_post>/delete/', login_required(tickets_views.delete_post), name='delete_ticket'),
 
     # Critiques
-
-    path('reviews/create/', login_required(tickets_views.new_review), name='review_create'),
-    path('tickets/<int:ticket_pk>/review/', login_required(tickets_views.new_review), name='ticket_review_create'),
-
-    # Critique en réponse
-    path('reviews/<int:pk>/', login_required(), name='review_detail'),  # Affiche et permet modification
+    path('review/creation/', login_required(tickets_views.new_review), name='review_create'),
+    path('review/modification/<int:review_pk>', login_required(tickets_views.update_review), name='review_update'),
+    path('review/<int:id_post>/delete/', login_required(tickets_views.delete_post), name='delete_review'),
 
     # Abonnements
     path("abonnements/", include("followers.urls"))

@@ -5,23 +5,28 @@ from followers.models import UserFollows
 from tickets.models import Ticket, Review
 
 
-def get_posts(user):
+def get_posts(user, page='flux'):
     """
         Récupère et met à jour les tickets et reviews de la base de données.
 
         Args:
           user (User): Utilisateur actuellement connecté.
+          page (String): page actuelle
 
         Returns:
           list: Liste triée des tickets et reviews, classés par date de création décroissante.
     """
 
-    # Récupération des tickets et reviews en fonction des abonnés suivi
-    followed_users = UserFollows.objects.filter(user=user).values_list('followed_user', flat=True)
-    followed_users = list(followed_users) + [user.id]
-    tickets = Ticket.objects.filter(user__in=followed_users).annotate(content_type=Value('TICKET', CharField()))
-    reviews = Review.objects.filter(user__in=followed_users).annotate(content_type=Value('REVIEW', CharField()))
+    if page == 'posts':
+        users = [user.id]
+    else:
+        # Récupération des tickets et reviews en fonction des abonnés suivi
+        users = UserFollows.objects.filter(user=user).values_list('followed_user', flat=True)
+        users = list(users) + [user.id]
 
+    tickets = Ticket.objects.filter(user__in=users).annotate(content_type=Value('TICKET', CharField()))
+    reviews = Review.objects.filter(user__in=users).annotate(content_type=Value('REVIEW', CharField()))
+    print(tickets)
     # Transformation des données (mise à jour avec la fonction update_data)
     posts = []
 

@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <div class="ticket-form">
+        <h2>{{ title }}</h2>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% for field in field.visible_fields %}
+                <div class="field-form">
+                    <label>{{ field.label }}</label>
+
+                    {% if field.name == "image" %}
+                        {% if field.value %}
+                            <div>
+                                <img src="{{ field.value.url }}" alt="Image actuelle" style="max-width: 200px; height: auto;">
+                            </div>
+                        {% endif %}
+                        <input type="file" name="image" accept="image/*" id="id_image">
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+
+                    {% for error in field.errors %}
+                        <span class="error_message">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <input type="submit" value="Enregistrer">
+        </form>
+    </div>
+{% endblock %}

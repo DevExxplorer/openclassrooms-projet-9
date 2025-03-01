@@ -45,6 +45,23 @@
   font-size: 1.5rem;
 }
 
+.message-alert {
+  text-align: center;
+}
+
+.message-alert .error {
+  color: red;
+}
+
+.message-alert .validate {
+  color: #006b1b;
+}
+
+.message-alert span {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -220,8 +237,15 @@ header .menu ul li a {
 .subscribe {
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 90%;
   margin: 50px auto;
+}
+
+@media (min-width: 1054px) {
+  .subscribe {
+    width: 60%;
+    padding: 100px 0;
+  }
 }
 
 .subscribe h2 {
@@ -231,15 +255,46 @@ header .menu ul li a {
 
 .subscribe__form__buttons {
   display: flex;
+  flex-direction: column;
+  width: 100%;
   margin-top: 20px;
 }
 
+@media (min-width: 1054px) {
+  .subscribe__form__buttons {
+    flex-direction: row;
+  }
+}
+
 .subscribe__form__buttons .btn {
+  width: 100%;
   margin-right: 20px;
 }
 
+@media (min-width: 1054px) {
+  .subscribe__form__buttons .btn {
+    width: auto;
+  }
+}
+
+.subscribe__form__buttons .btn a {
+  width: 100%;
+}
+
+@media (min-width: 1054px) {
+  .subscribe__form__buttons .btn a {
+    width: auto;
+  }
+}
+
 .subscribe__form__buttons input[type="submit"] {
-  margin: 0;
+  margin: 10px 0 0 0;
+}
+
+@media (min-width: 1054px) {
+  .subscribe__form__buttons input[type="submit"] {
+    margin: 0;
+  }
 }
 
 .ticket-form {
@@ -297,50 +352,66 @@ header .menu ul li a {
 }
 
 .post,
-.bloc_review {
+.bloc_review,
+.post_view,
+.review {
   margin: 0 0 15px 0;
 }
 
 .post__infos,
-.bloc_review__infos {
+.bloc_review__infos,
+.post_view__infos,
+.review__infos {
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
 }
 
 .post__infos .date,
-.bloc_review__infos .date {
+.bloc_review__infos .date,
+.post_view__infos .date,
+.review__infos .date {
   font-style: italic;
 }
 
 .post__description p,
-.bloc_review__description p {
+.bloc_review__description p,
+.post_view__description p,
+.review__description p {
   text-align: left;
 }
 
 .post__description img,
-.bloc_review__description img {
+.bloc_review__description img,
+.post_view__description img,
+.review__description img {
   margin-top: 15px;
   width: 20%;
   height: auto;
 }
 
 .post__title,
-.bloc_review__title {
+.bloc_review__title,
+.post_view__title,
+.review__title {
   display: flex;
   align-items: end;
   margin-bottom: 15px;
 }
 
 .post__title .headline,
-.bloc_review__title .headline {
+.bloc_review__title .headline,
+.post_view__title .headline,
+.review__title .headline {
   font-size: 2.2rem;
   font-weight: bold;
   margin-right: 10px;
 }
 
 .post__title .line,
-.bloc_review__title .line {
+.bloc_review__title .line,
+.post_view__title .line,
+.review__title .line {
   margin: 0 15px 5px 10px;
   font-size: 2rem;
   line-height: 1;
@@ -348,12 +419,16 @@ header .menu ul li a {
 }
 
 .post__title .rating,
-.bloc_review__title .rating {
+.bloc_review__title .rating,
+.post_view__title .rating,
+.review__title .rating {
   display: inline-block;
 }
 
 .post__title .rating .star,
-.bloc_review__title .rating .star {
+.bloc_review__title .rating .star,
+.post_view__title .rating .star,
+.review__title .rating .star {
   font-size: 4rem;
   line-height: 1;
   vertical-align: middle;
@@ -369,27 +444,49 @@ header .menu ul li a {
 .bloc_review__title .rating[data-rating="2"] .star:nth-child(-n+2),
 .bloc_review__title .rating[data-rating="3"] .star:nth-child(-n+3),
 .bloc_review__title .rating[data-rating="4"] .star:nth-child(-n+4),
-.bloc_review__title .rating[data-rating="5"] .star:nth-child(-n+5) {
+.bloc_review__title .rating[data-rating="5"] .star:nth-child(-n+5),
+.post_view__title .rating[data-rating="1"] .star:nth-child(1),
+.post_view__title .rating[data-rating="2"] .star:nth-child(-n+2),
+.post_view__title .rating[data-rating="3"] .star:nth-child(-n+3),
+.post_view__title .rating[data-rating="4"] .star:nth-child(-n+4),
+.post_view__title .rating[data-rating="5"] .star:nth-child(-n+5),
+.review__title .rating[data-rating="1"] .star:nth-child(1),
+.review__title .rating[data-rating="2"] .star:nth-child(-n+2),
+.review__title .rating[data-rating="3"] .star:nth-child(-n+3),
+.review__title .rating[data-rating="4"] .star:nth-child(-n+4),
+.review__title .rating[data-rating="5"] .star:nth-child(-n+5) {
   color: #f39c12;
   /* Couleur de l'étoile pleine */
 }
 
 .post__btn,
-.bloc_review__btn {
+.bloc_review__btn,
+.post_view__btn,
+.review__btn {
   display: flex;
   justify-content: flex-end;
   margin: 30px 15px 15px 0;
 }
 
 .post .buttons_post,
-.bloc_review .buttons_post {
+.bloc_review .buttons_post,
+.post_view .buttons_post,
+.review .buttons_post {
   display: flex;
   justify-content: flex-end;
 }
 
 .post .buttons_post .btn a,
-.bloc_review .buttons_post .btn a {
+.bloc_review .buttons_post .btn a,
+.post_view .buttons_post .btn a,
+.review .buttons_post .btn a {
   margin: 0 10px;
+}
+
+.review {
+  padding: 15px;
+  border: 2px solid black;
+  border-radius: 5px;
 }
 
 .followers {

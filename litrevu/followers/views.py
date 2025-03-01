@@ -1,8 +1,10 @@
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from authentificate.models import User
 from followers.forms import SearchForm
 from followers.utils.followers import list_followers, add_new_follower
+from .models import UserFollows
 import json
 
 def page_views(request):
@@ -42,7 +44,7 @@ def unsubscribe_user(request):
             user_id = data.get('user_id')
 
             try:
-                user_remove = User.objects.get(id=user_id)
+                user_remove = get_object_or_404(UserFollows, user=request.user, followed_user_id=user_id)
                 user_remove.delete()
                 return JsonResponse({'success': True, 'message': 'Utilisateur désabonné avec succès!'})
             except User.DoesNotExist:

@@ -1,6 +1,6 @@
 from tickets.forms import TicketForm, ReviewForm
 
-def add_new_data(request, type_data='ticket', ticket=None):
+def add_new_data(request, type_data='ticket', ticket=None, review=None):
     """
         Fonction permettant de gérer l'ajout d'un nouveau ticket, d'une review ou des deux à la fois.
 
@@ -25,9 +25,9 @@ def add_new_data(request, type_data='ticket', ticket=None):
     if request.method == 'POST':
         # Initialisation des formulaires
         if type_data in ['ticket', 'ticket_review']:
-            ticket_form = TicketForm(request.POST, request.FILES)
+            ticket_form = TicketForm(request.POST, request.FILES, instance=ticket)
         if type_data in ['review', 'ticket_review']:
-            review_form = ReviewForm(request.POST)
+            review_form = ReviewForm(request.POST, instance=review)
 
         # Traitement selon le type
         if type_data == 'ticket':
@@ -60,9 +60,9 @@ def add_new_data(request, type_data='ticket', ticket=None):
     else:
         # Initialisation des formulaires pour affichage
         if type_data in ['ticket', 'ticket_review']:
-            ticket_form = TicketForm()
+            ticket_form = TicketForm(instance=ticket) if ticket else TicketForm()
         if type_data in ['review', 'ticket_review']:
-            review_form = ReviewForm()
+            review_form = ReviewForm(instance=review) if review else ReviewForm()
 
     return {
         'ticket_form': ticket_form,

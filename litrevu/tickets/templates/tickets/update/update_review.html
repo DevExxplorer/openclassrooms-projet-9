@@ -1,0 +1,19 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <div class="ticket-form">
+        <h2>{{ title }}</h2>
+        <div class="answer-ticket border">
+            <p>Vous êtes entrain de poster en réponse à</p>
+            {% include 'tickets/components/ticket.html' with post=ticket page='critique' %}
+        </div>
+        <div class="separate"></div>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in review %}
+               {% include 'app/field_form.html' with field=field show_label=show_label %}
+            {% endfor %}
+            <input type="submit" value="Envoyer">
+        </form>
+    </div>
+{% endblock %}

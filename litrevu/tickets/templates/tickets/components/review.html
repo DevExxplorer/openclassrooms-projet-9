@@ -1,7 +1,7 @@
 {% load static %}
 
 <!-- Affichage de la review avec les données du ticket lié -->
- <div class="post__review">
+ <div class="review__content">
     <div class="bloc_review">
         <div class="bloc_review__infos">
             <span>{{ post.author }} a publié une critique</span>
@@ -22,7 +22,7 @@
             <p>{{ post.body }}</p>
         </div>
     </div>
-    <div class="post border">
+    <div class="post_view border">
          <div class="post__infos">
             <span>Ticket - {{ post.user.username }}</span>
         </div>

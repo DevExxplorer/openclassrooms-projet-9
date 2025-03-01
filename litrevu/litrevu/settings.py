@@ -127,6 +127,7 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
     "app/static/",
     "followers/static/",
+    "tickets/static/",
 ]
 
 # Default primary key field type

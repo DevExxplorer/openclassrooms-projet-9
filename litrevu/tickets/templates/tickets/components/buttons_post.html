@@ -1,6 +1,11 @@
 <div class="buttons_post">
     <div class="btn">
-        <a href="#" title="Modifier le post">Modifier</a>
-        <a href="#" title="Supprimer le post">Supprimer</a>
+        {% if post.content_type == 'TICKET' %}
+            <a href="{% url 'ticket_update' ticket_pk=post.id %}" title="Modifier le post">Modifier</a>
+            <a class="delete" href="{% url 'delete_ticket' id_post=post.id %}" title="Supprimer le post" data-post-id="{{ post.id }}">Supprimer</a>
+        {% else %}
+            <a href="{% url 'review_update' review_pk=post.id %}" title="Modifier le post">Modifier</a>
+            <a class="delete" href="{% url 'delete_review' id_post=post.id %}" title="Supprimer le post" data-post-id="{{ post.id }}">Supprimer</a>
+        {% endif %}
     </div>
 </div>

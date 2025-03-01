@@ -22,3 +22,20 @@
   font-weight: 700;
   font-size: 1.5rem;
 }
+
+.message-alert {
+  text-align: center;
+
+  .error {
+    color: red;
+  }
+
+  .validate {
+    color: #006b1b;
+  }
+
+  span {
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+}
