@@ -3,6 +3,12 @@ from django.contrib.auth import logout, login
 from .forms import SubscribeForm
 
 def subscribe(request):
+    """
+        Vue qui affiche la page d'inscription
+
+        Args:
+            request (HttpRequest): Objet représentant la requête HTTP
+    """
     if request.method == 'POST':
         form = SubscribeForm(request.POST)
 

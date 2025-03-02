@@ -1,5 +1,4 @@
 from django.contrib.auth import get_user_model
-from datetime import datetime
 
 def get_name_author(id_author):
     """
@@ -11,7 +10,6 @@ def get_name_author(id_author):
         Returns:
             name_author: Retourne le nom de l'auteur
     """
-
     data_user = get_user_model()
 
     try:
@@ -25,18 +23,17 @@ def get_name_author(id_author):
     except data_user.DoesNotExist:
         return "Utilisateur inconnu"
 
-# Utilisateur suivi
-def get_user_subscriptions(authenticate_user):
-    list_subscriptions = []
-
-    subscriptions = authenticate_user.subscription.all()
-
-    for subscription in subscriptions:
-        list_subscriptions.append(subscription.user.id)
-
-    return list_subscriptions
-
 def update_format_date(date):
+    """
+       Modifie le format de la date
+
+       Args:
+           date (datetime): Date au format de base
+
+       Returns:
+           formatted_date: Retourne la date modifiée
+    """
+
     formatted_date = date.strftime("%H:%M, %d %B %Y")
     months = {
         "January": "janvier",

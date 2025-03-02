@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from .models import User
 
+
 class SubscribeForm(UserCreationForm):
     class Meta:
         model = User

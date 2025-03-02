@@ -1,4 +1,3 @@
-from django.shortcuts import get_object_or_404
 from django.db.models import Value, CharField
 from app.utils.helpers import update_format_date, get_name_author
 from followers.models import UserFollows

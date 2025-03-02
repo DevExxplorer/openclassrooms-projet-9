@@ -3,6 +3,15 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 
 def home(request):
+    """
+        Vue qui affiche la page d'accueil si non connecté
+
+        Args:
+            request (HttpRequest): Objet représentant la requête HTTP
+
+        Returns:
+            Retourne la page Flux si connection valide sinon affichage du formulaire
+    """
     if request.user.is_authenticated:
         return redirect("flux")
     else:

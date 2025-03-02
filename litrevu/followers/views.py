@@ -5,8 +5,10 @@ from authentificate.models import User
 from followers.forms import SearchForm
 from followers.utils.followers import list_followers, add_new_follower
 from .models import UserFollows
+from django.contrib.auth.decorators import login_required
 import json
 
+@login_required
 def page_views(request):
     """
         Vue qui affiche la liste des abonnements d'un utilisateur et permet d'ajouter un nouvel abonnement.
@@ -31,7 +33,17 @@ def page_views(request):
         }
     )
 
+@login_required
 def subscribe_user(request):
+    """
+        Vue fonctionnant avec ajax pour retrouver un utilisateur selon la recherche effectué dans le formulaire
+
+        Args:
+            request (HttpRequest): Objet représentant la requête HTTP
+
+        Returns:
+            JsonResponse: Retourne un booleen et l'id de l'utilisateur si le boolean est True
+    """
     if request.method == 'POST':
         data = json.loads(request.body)
         search_value = data.get('search_value')
@@ -53,15 +65,16 @@ def subscribe_user(request):
 
     return JsonResponse({'success': False, 'message': 'Requête invalide.'})
 
+@login_required
 def unsubscribe_user(request):
     """
         Vue qui permet à un utilisateur de se désabonner d'un autre utilisateur.
 
         Args:
-        request (HttpRequest): Objet représentant la requête HTTP
+            request (HttpRequest): Objet représentant la requête HTTP
 
         Returns:
-        JsonResponse: Réponse JSON indiquant le succès ou l'échec de l'opération.
+            JsonResponse: Réponse JSON indiquant le succès ou l'échec de l'opération.
     """
     if request.method == 'POST':
         try:
