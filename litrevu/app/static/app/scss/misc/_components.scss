@@ -23,19 +23,20 @@
   font-size: 1.5rem;
 }
 
-.message-alert {
+.message-alert,
+.message{
   text-align: center;
-
-  .error {
-    color: red;
-  }
-
-  .validate {
-    color: #006b1b;
-  }
 
   span {
     font-weight: 700;
     font-size: 1.5rem;
   }
+}
+
+.error {
+  color: red;
+}
+
+.validate {
+  color: #006b1b;
 }

@@ -4,7 +4,11 @@
  <div class="review__content">
     <div class="bloc_review">
         <div class="bloc_review__infos">
-            <span>{{ post.author }} a publié une critique</span>
+            {% if post.user_logged_in %}
+                <span>{{ post.author }} a publié une critique</span>
+            {% else %}
+                <span>Vous avez publié une critique</span>
+            {% endif %}
             <span class="date">{{ post.date }}</span>
         </div>
         <div class="bloc_review__title">

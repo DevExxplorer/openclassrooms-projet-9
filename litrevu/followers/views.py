@@ -8,49 +8,73 @@ from .models import UserFollows
 import json
 
 def page_views(request):
+    """
+        Vue qui affiche la liste des abonnements d'un utilisateur et permet d'ajouter un nouvel abonnement.
+
+        Args:
+            request (HttpRequest): Objet représentant la requête HTTP
+
+        Returns:
+            HttpResponse: Retourne la page contenant la liste des abonnements et un formulaire de recherche.
+    """
     authenticate_user = request.user
     list_users = list_followers(authenticate_user)
+    form = SearchForm()
 
-    if request.method == 'POST':
-        search_value = request.POST['search']
-
-        try:
-            user_follower = User.objects.get(username=search_value)
-            message_form = add_new_follower(user_follower, authenticate_user)
-        except User.DoesNotExist:
-            message_form = 'L\'utilisateur que vous souhaitez suivre n\'existe pas.'
-
-        # Réinitialiser le formulaire après soumission
-        form = SearchForm()
-    else:
-        form = SearchForm(None)
-        message_form = ""
-    print(list_users)
     return render(
         request,
         'followers/page.html',
         {
             'form': form,
-            'message_form': message_form,
             'list_users': list_users,
             'show_label': False
         }
     )
 
+def subscribe_user(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        search_value = data.get('search_value')
+
+        if search_value:
+            try:
+                followed_user = User.objects.get(username=search_value)
+
+                if not UserFollows.objects.filter(user=request.user, followed_user=followed_user).exists():
+                    UserFollows.objects.create(user=request.user, followed_user=followed_user)
+                    return JsonResponse({'success': True, 'user_id': followed_user.id})
+                else:
+                    return JsonResponse({'success': False, 'message': 'Vous suivez déjà cet utilisateur.'})
+
+            except Exception as e:
+                print(f"Exception capturée : {type(e).__name__} - {e}")
+
+        return JsonResponse({'success': False, 'message': 'Valeur de recherche invalide.'})
+
+    return JsonResponse({'success': False, 'message': 'Requête invalide.'})
+
 def unsubscribe_user(request):
+    """
+        Vue qui permet à un utilisateur de se désabonner d'un autre utilisateur.
+
+        Args:
+        request (HttpRequest): Objet représentant la requête HTTP
+
+        Returns:
+        JsonResponse: Réponse JSON indiquant le succès ou l'échec de l'opération.
+    """
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
             user_id = data.get('user_id')
 
-            try:
-                user_remove = get_object_or_404(UserFollows, user=request.user, followed_user_id=user_id)
-                user_remove.delete()
-                return JsonResponse({'success': True, 'message': 'Utilisateur désabonné avec succès!'})
-            except User.DoesNotExist:
-                return JsonResponse({'success': False, 'error': 'Utilisateur non trouvé'}, status=404)
-
+            user_remove = get_object_or_404(UserFollows, user=request.user, followed_user_id=user_id)
+            user_remove.delete()
+            return JsonResponse({'success': True, 'message': 'Utilisateur désabonné avec succès!'})
+        except json.JSONDecodeError:
+            return JsonResponse({'success': False, 'error': 'Format JSON invalide'}, status=400)
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)}, status=500)
 
     return JsonResponse({'success': False, 'error': 'Méthode non autorisée'}, status=405)
+

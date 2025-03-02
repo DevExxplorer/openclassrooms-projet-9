@@ -45,21 +45,23 @@
   font-size: 1.5rem;
 }
 
-.message-alert {
+.message-alert,
+.message {
   text-align: center;
 }
 
-.message-alert .error {
+.message-alert span,
+.message span {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.error {
   color: red;
 }
 
-.message-alert .validate {
+.validate {
   color: #006b1b;
-}
-
-.message-alert span {
-  font-weight: 700;
-  font-size: 1.5rem;
 }
 
 form {
@@ -538,6 +540,7 @@ header .menu ul li a {
 .review .buttons_post {
   display: flex;
   justify-content: flex-end;
+  margin-top: 30px;
 }
 
 .post .buttons_post .btn a,

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block bottom_scripts %}
-    <script src="{% static 'followers/js/unsubscribe.js' %}"></script>
+    <script src="{% static 'followers/js/subscribe.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -16,7 +16,7 @@
                 {% endfor %}
                 <input type="submit" value="Envoyer">
             </form>
-            <div class="message">{{message_form}}</div>
+            <div class="message"></div>
         </div>
         <div class="followers__subscribe">
             <h2>Abonnements</h2>
@@ -30,6 +30,7 @@
                    </div>
                 {% endfor %}
             </div>
+            <div class="message"></div>
         </div>
         <div class="followers__subscriber">
             <h2>Abonnés</h2>

@@ -121,6 +121,18 @@ def new_review(request, ticket_pk=None):
 
 @login_required
 def update_ticket(request, ticket_pk):
+    """
+        Vue qui affiche le formulaire pour modifier un nouveau ticket
+
+        En fonction de l'id_ticket le formulaire des tickets et modifier
+
+        Args:
+            request (HttpRequest): Objet représentant la requête HTTP
+            ticket_pk (int, optional): Id du ticket
+
+        Returns:
+            Retourne la page update_ticket.html
+    """
     ticket = get_object_or_404(Ticket, id=ticket_pk)
     data_form = add_new_data(request, 'ticket', ticket)
 
@@ -140,6 +152,19 @@ def update_ticket(request, ticket_pk):
 
 @login_required
 def update_review(request, review_pk):
+    """
+        Vue qui affiche le formulaire pour modifier une nouvelle review
+
+        En fonction de l'id_review le formulaire des reviews et modifier
+
+        Args:
+            request (HttpRequest): Objet représentant la requête HTTP
+            review_pk (int, optional): Id de la review
+
+        Returns:
+            Retourne la page update_review.html
+    """
+
     review = get_object_or_404(Review, id=review_pk)
     ticket = review.ticket
     ticket = update_data(ticket, request.user)
@@ -162,6 +187,16 @@ def update_review(request, review_pk):
 
 @login_required
 def delete_post(request, id_post):
+    """
+        Vue qui permet de supprimer un ticket ou une review
+
+        Args:
+            request (HttpRequest): Objet représentant la requête HTTP
+            id_post (int, optional): Id de la review ou ticket
+
+        Returns:
+            Retourne JsonResponse
+    """
     view_name = request.resolver_match.view_name
 
     if request.method == 'POST':
