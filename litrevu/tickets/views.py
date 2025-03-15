@@ -198,6 +198,7 @@ def delete_post(request, id_post):
         Retourne JsonResponse
     """
     view_name = request.resolver_match.view_name
+    authentificate_user = request.user
 
     if request.method == "POST":
         if view_name == "delete_ticket":
@@ -207,7 +208,8 @@ def delete_post(request, id_post):
         else:
             return
 
-        post.delete()
+        if authentificate_user == post.user:
+            post.delete()
 
         if request.headers.get("X-Requested-With") == "XMLHttpRequest":
             return JsonResponse({"success": True})

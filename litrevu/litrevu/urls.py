@@ -16,17 +16,36 @@ def custom_logout(request):
 
 
 urlpatterns = [
-    # Home
-    path("", app_views.home, name="home"),
-    # Authentification
-    path("inscription/", auth_views.subscribe, name="subscription"),
-    path("logout/", custom_logout, name="logout"),
-    # Admin
-    path("admin/", admin.site.urls, name="admin"),
-    # Flux et Posts
-    path("flux/", login_required(tickets_views.tickets), name="flux"),
-    path("posts/", login_required(tickets_views.posts), name="posts"),
-    # Tickets
+    path(
+        "",
+        app_views.home,
+        name="home"
+    ),
+    path(
+        "inscription/",
+        auth_views.subscribe,
+        name="subscription"
+    ),
+    path(
+        "logout/",
+        custom_logout,
+        name="logout"
+    ),
+    path(
+        "admin/",
+        admin.site.urls,
+        name="admin"
+    ),
+    path(
+        "flux/",
+        login_required(tickets_views.tickets),
+        name="flux"
+    ),
+    path(
+        "posts/",
+        login_required(tickets_views.posts),
+        name="posts"
+    ),
     path(
         "tickets/creation/",
         login_required(tickets_views.new_ticket),
@@ -47,7 +66,6 @@ urlpatterns = [
         login_required(tickets_views.delete_post),
         name="delete_ticket",
     ),
-    # Critiques
     path(
         "review/creation/",
         login_required(tickets_views.new_review),
@@ -63,7 +81,6 @@ urlpatterns = [
         login_required(tickets_views.delete_post),
         name="delete_review",
     ),
-    # Abonnements
     path("abonnements/", include("followers.urls")),
 ]
 
