@@ -3,58 +3,61 @@ from followers.models import UserFollows
 
 def add_new_follower(user_follower, authenticate_user):
     """
-       On ajoute l'utilisateur recherché dans la BDD
-       On vérifie avant que que l'utilisateur recherché ne soit pas celui connecté
-       et que l'utilisateur existe bien dans la BBD
+    On ajoute l'utilisateur recherché dans la BDD
+    On vérifie avant que que l'utilisateur
+    recherché ne soit pas celui connecté
+    et que l'utilisateur existe bien dans la BBD
 
-        Args:
-            user_follower (str): user follower.
-            authenticate_user (class): class authenticate user.
+     Args:
+         user_follower (str): user follower.
+         authenticate_user (class): class authenticate user.
 
-        Returns:
-            message: user message.
+     Returns:
+         message: user message.
     """
 
     if user_follower != authenticate_user:
-        if not UserFollows.objects.filter(user=authenticate_user, followed_user=user_follower).exists():
-            UserFollows.objects.create(user=authenticate_user, followed_user=user_follower)
+        if not UserFollows.objects.filter(
+            user=authenticate_user, followed_user=user_follower
+        ).exists():
+            UserFollows.objects.create(
+                user=authenticate_user, followed_user=user_follower
+            )
 
-            message = f"L\'utilisateur {user_follower} vient d'être ajouté à votre liste"
+            message = f"L'utilisateur {user_follower} vient d'être ajouté à votre liste"
         else:
             message = f"L'utilisateur {user_follower} est déjà suivi"
     else:
-        message = f"Vous ne pouvez pas vous ajouter vous même !"
+        message = "Vous ne pouvez pas vous ajouter vous même !"
 
     return message
 
+
 def list_followers(authenticate_user):
     """
-        Génere une liste avec deux tableaux:
-         - Les utilisateurs que l'on suit (following)
-         - Les utilisateurs qui nous suivent (followed)
+    Génere une liste avec deux tableaux:
+     - Les utilisateurs que l'on suit (following)
+     - Les utilisateurs qui nous suivent (followed)
 
-        Args:
-            authenticate_user (class): class authenticate user.
+    Args:
+        authenticate_user (class): class authenticate user.
 
-        Returns:
-            list: liste des utilisateurs.
+    Returns:
+        list: liste des utilisateurs.
     """
 
-    list_users = {
-        'followed': [],
-        'following': []
-    }
+    list_users = {"followed": [], "following": []}
 
     # Utilisateur suivi
     users_following = authenticate_user.following.all()
 
     for user_following in users_following:
-        list_users['following'].append(user_following.followed_user)
+        list_users["following"].append(user_following.followed_user)
 
     # Utilisateur qui nous suit
     users_followed = authenticate_user.subscription.all()
 
     for user_followed in users_followed:
-        list_users['followed'].append(user_followed.user)
+        list_users["followed"].append(user_followed.user)
 
     return list_users

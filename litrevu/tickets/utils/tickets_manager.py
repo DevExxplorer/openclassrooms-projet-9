@@ -4,37 +4,44 @@ from followers.models import UserFollows
 from tickets.models import Ticket, Review
 
 
-def get_posts(user, page='flux'):
+def get_posts(user, page="flux"):
     """
-        Récupère et met à jour les tickets et reviews de la base de données.
+    Récupère et met à jour les tickets et reviews de la base de données.
 
-        Args:
-          user (User): Utilisateur actuellement connecté.
-          page (String): page actuelle
+    Args:
+      user (User): Utilisateur actuellement connecté.
+      page (String): page actuelle
 
-        Returns:
-          list: Liste triée des tickets et reviews, classés par date de création décroissante.
+    Returns:
+      list: Liste triée des tickets et reviews,
+      classés par date de création décroissante.
     """
 
-    if page == 'posts':
+    if page == "posts":
         users = [user.id]
     else:
         # Récupération des tickets et reviews en fonction des abonnés suivi
-        users = UserFollows.objects.filter(user=user).values_list('followed_user', flat=True)
+        users = UserFollows.objects.filter(user=user).values_list(
+            "followed_user", flat=True
+        )
         users = list(users) + [user.id]
 
-    tickets = Ticket.objects.filter(user__in=users).annotate(content_type=Value('TICKET', CharField()))
-    reviews = Review.objects.filter(user__in=users).annotate(content_type=Value('REVIEW', CharField()))
+    tickets = Ticket.objects.filter(user__in=users).annotate(
+        content_type=Value("TICKET", CharField())
+    )
+    reviews = Review.objects.filter(user__in=users).annotate(
+        content_type=Value("REVIEW", CharField())
+    )
     print(tickets)
     # Transformation des données (mise à jour avec la fonction update_data)
     posts = []
 
     # Mise à jour des tickets
     for ticket in tickets:
-
         updated_ticket = update_data(ticket, user)
 
-        # On controle que l'utilisateur n'a pas deja laissé une review au ticket
+        # On controle que l'utilisateur n'a pas deja
+        # laissé une review au ticket
         ticket.has_review = Review.objects.filter(ticket=ticket, user=user).exists()
 
         posts.append(updated_ticket)
@@ -42,7 +49,9 @@ def get_posts(user, page='flux'):
     # Mise à jour des reviews
     for review in reviews:
         updated_review = update_data(review, user)
-        review.ticket.has_review = Review.objects.filter(ticket=review.ticket, user=user).exists()
+        review.ticket.has_review = Review.objects.filter(
+            ticket=review.ticket, user=user
+        ).exists()
         posts.append(updated_review)
 
     # Fusionner tickets et reviews en une seule liste et tri par date
@@ -50,16 +59,20 @@ def get_posts(user, page='flux'):
 
     return posts_sorted
 
+
 def update_data(data, user):
     """
-        Met à jour les données d'un ticket ou d'une critique en ajoutant des informations formatées.
+    Met à jour les données d'un ticket
+    ou d'une critique en ajoutant des informations formatées.
 
-        Args:
-            data (Ticket | Review): Instance du modèle Ticket ou Review à mettre à jour.
-            user (User): Utilisateur actuellement connecté.
+    Args:
+        data (Ticket | Review): Instance du modèle
+        Ticket ou Review à mettre à jour.
+        user (User): Utilisateur actuellement connecté.
 
-        Returns:
-            Ticket | Review: L'instance mise à jour avec les nouvelles informations.
+    Returns:
+        Ticket | Review: L'instance mise à jour
+        avec les nouvelles informations.
     """
     data.date = update_format_date(data.time_created)
     data.author = get_name_author(data.user_id)
@@ -68,10 +81,10 @@ def update_data(data, user):
     if isinstance(data, Review):
         ticket = data.ticket
 
-        if data.content_type == 'REVIEW':
-            if hasattr(ticket, 'image') and ticket.image:
+        if data.content_type == "REVIEW":
+            if hasattr(ticket, "image") and ticket.image:
                 data.image = ticket.image
             else:
-                data.image = ''
+                data.image = ""
 
     return data

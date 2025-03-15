@@ -9,206 +9,206 @@ from tickets.utils.tickets_manager import update_data, get_posts
 @login_required
 def tickets(request):
     """
-        Vue qui affiche la liste des tickets.
+    Vue qui affiche la liste des tickets.
 
-        Args:
-            request (HttpRequest): Objet représentant la requête HTTP
+    Args:
+        request (HttpRequest): Objet représentant la requête HTTP
 
-        Returns:
-            Retourne la page Flux
+    Returns:
+        Retourne la page Flux
     """
-    page = request.GET.get('page', 'flux')
+    page = request.GET.get("page", "flux")
     posts_list = get_posts(request.user)
 
     return render(
         request,
-        'tickets/posts.html',
+        "tickets/posts.html",
         {
-            'page': page,
-            'posts': posts_list,
-        }
+            "page": page,
+            "posts": posts_list,
+        },
     )
 
 
 @login_required
 def posts(request):
     """
-        Vue qui affiche la liste des posts.
+    Vue qui affiche la liste des posts.
 
-        Args:
-            request (HttpRequest): Objet représentant la requête HTTP
+    Args:
+        request (HttpRequest): Objet représentant la requête HTTP
 
-        Returns:
-            Retourne la page Posts
+    Returns:
+        Retourne la page Posts
     """
-    data_posts = get_posts(request.user, 'posts')
+    data_posts = get_posts(request.user, "posts")
 
     return render(
         request,
-        'tickets/posts.html',
+        "tickets/posts.html",
         {
-            'page': 'posts',
-            'posts': data_posts,
-        }
+            "page": "posts",
+            "posts": data_posts,
+        },
     )
 
 
 @login_required
 def new_ticket(request):
     """
-        Vue qui affiche le formulaire pour créer un nouveau ticket
+    Vue qui affiche le formulaire pour créer un nouveau ticket
 
-        Args:
-            request (HttpRequest): Objet représentant la requête HTTP
+    Args:
+        request (HttpRequest): Objet représentant la requête HTTP
 
-        Returns:
-            Retourne la page new_ticket.html
+    Returns:
+        Retourne la page new_ticket.html
     """
     data_form = add_new_data(request)
 
-    if data_form['valid']:
-        return redirect('flux')
+    if data_form["valid"]:
+        return redirect("flux")
 
     return render(
         request,
-        'tickets/create/new_ticket.html',
+        "tickets/create/new_ticket.html",
         {
-            'title': 'Créer un ticket',
-            'tickets': data_form['ticket_form'],
-            'show_label': True
-        }
+            "title": "Créer un ticket",
+            "tickets": data_form["ticket_form"],
+            "show_label": True,
+        },
     )
 
 
 @login_required
 def new_review(request, ticket_pk=None):
     """
-        Vue qui affiche le formulaire pour créer une nouvelle review
+    Vue qui affiche le formulaire pour créer une nouvelle review
 
-        En fonction de l'id_ticket le formulaire des tickets et modifier
+    En fonction de l'id_ticket le formulaire des tickets et modifier
 
-        Args:
-            request (HttpRequest): Objet représentant la requête HTTP
-            ticket_pk (int, optional): Id du ticket
+    Args:
+        request (HttpRequest): Objet représentant la requête HTTP
+        ticket_pk (int, optional): Id du ticket
 
-        Returns:
-            Retourne la page new_review.html
+    Returns:
+        Retourne la page new_review.html
     """
     if ticket_pk:
         ticket_object = get_object_or_404(Ticket, id=ticket_pk)
         ticket = update_data(ticket_object, request.user)
-        data_form = add_new_data(request, 'review', ticket)
-        url_template = 'tickets/create/new_review.html'
+        data_form = add_new_data(request, "review", ticket)
+        url_template = "tickets/create/new_review.html"
     else:
-        data_form = add_new_data(request, 'ticket_review')
-        ticket = data_form['ticket_form']
-        url_template = 'tickets/create/new_ticket_review.html'
+        data_form = add_new_data(request, "ticket_review")
+        ticket = data_form["ticket_form"]
+        url_template = "tickets/create/new_ticket_review.html"
 
-    if data_form['valid']:
-        return redirect('flux')
+    if data_form["valid"]:
+        return redirect("flux")
 
     return render(
         request,
         url_template,
         {
-            'title': 'Créer une critique',
-            'ticket': ticket,
-            'review': data_form['review_form'],
-            'show_label': True
-        }
+            "title": "Créer une critique",
+            "ticket": ticket,
+            "review": data_form["review_form"],
+            "show_label": True,
+        },
     )
 
 
 @login_required
 def update_ticket(request, ticket_pk):
     """
-        Vue qui affiche le formulaire pour modifier un nouveau ticket
+    Vue qui affiche le formulaire pour modifier un nouveau ticket
 
-        En fonction de l'id_ticket le formulaire des tickets et modifier
+    En fonction de l'id_ticket le formulaire des tickets et modifier
 
-        Args:
-            request (HttpRequest): Objet représentant la requête HTTP
-            ticket_pk (int, optional): Id du ticket
+    Args:
+        request (HttpRequest): Objet représentant la requête HTTP
+        ticket_pk (int, optional): Id du ticket
 
-        Returns:
-            Retourne la page update_ticket.html
+    Returns:
+        Retourne la page update_ticket.html
     """
     ticket = get_object_or_404(Ticket, id=ticket_pk)
-    data_form = add_new_data(request, 'ticket', ticket)
+    data_form = add_new_data(request, "ticket", ticket)
 
-    if data_form['valid']:
-        return redirect('posts')
+    if data_form["valid"]:
+        return redirect("posts")
 
     return render(
         request,
-        'tickets/update/update_ticket.html',
+        "tickets/update/update_ticket.html",
         {
-            'title': 'Modifier votre ticket',
-            'field': data_form['ticket_form'],
-            'show_label': True
-        }
+            "title": "Modifier votre ticket",
+            "field": data_form["ticket_form"],
+            "show_label": True,
+        },
     )
 
 
 @login_required
 def update_review(request, review_pk):
     """
-        Vue qui affiche le formulaire pour modifier une nouvelle review
+    Vue qui affiche le formulaire pour modifier une nouvelle review
 
-        En fonction de l'id_review le formulaire des reviews et modifier
+    En fonction de l'id_review le formulaire des reviews et modifier
 
-        Args:
-            request (HttpRequest): Objet représentant la requête HTTP
-            review_pk (int, optional): Id de la review
+    Args:
+        request (HttpRequest): Objet représentant la requête HTTP
+        review_pk (int, optional): Id de la review
 
-        Returns:
-            Retourne la page update_review.html
+    Returns:
+        Retourne la page update_review.html
     """
 
     review = get_object_or_404(Review, id=review_pk)
     ticket = review.ticket
     ticket = update_data(ticket, request.user)
-    data_form = add_new_data(request, 'review', ticket, review)
+    data_form = add_new_data(request, "review", ticket, review)
 
-    if data_form['valid']:
-        return redirect('posts')
+    if data_form["valid"]:
+        return redirect("posts")
 
     return render(
         request,
-        'tickets/update/update_review.html',
+        "tickets/update/update_review.html",
         {
-            'title': 'Modifier votre critique',
-            'ticket': ticket,
-            'review': data_form['review_form'],
-            'show_label': True
-        }
+            "title": "Modifier votre critique",
+            "ticket": ticket,
+            "review": data_form["review_form"],
+            "show_label": True,
+        },
     )
 
 
 @login_required
 def delete_post(request, id_post):
     """
-        Vue qui permet de supprimer un ticket ou une review
+    Vue qui permet de supprimer un ticket ou une review
 
-        Args:
-            request (HttpRequest): Objet représentant la requête HTTP
-            id_post (int, optional): Id de la review ou ticket
+    Args:
+        request (HttpRequest): Objet représentant la requête HTTP
+        id_post (int, optional): Id de la review ou ticket
 
-        Returns:
-            Retourne JsonResponse
+    Returns:
+        Retourne JsonResponse
     """
     view_name = request.resolver_match.view_name
 
-    if request.method == 'POST':
-        if view_name == 'delete_ticket':
+    if request.method == "POST":
+        if view_name == "delete_ticket":
             post = get_object_or_404(Ticket, id=id_post)
-        elif view_name == 'delete_review':
+        elif view_name == "delete_review":
             post = get_object_or_404(Review, id=id_post)
         else:
             return
 
         post.delete()
 
-        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            return JsonResponse({'success': True})
-        return JsonResponse({'success': False}, status=400)
+        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+            return JsonResponse({"success": True})
+        return JsonResponse({"success": False}, status=400)

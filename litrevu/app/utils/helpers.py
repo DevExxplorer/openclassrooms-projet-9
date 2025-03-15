@@ -1,14 +1,15 @@
 from django.contrib.auth import get_user_model
 
+
 def get_name_author(id_author):
     """
-        Retourne le nom de l'auteur de la review
+    Retourne le nom de l'auteur de la review
 
-        Args:
-            id_author (Number): Identifiant de l'auteur
+    Args:
+        id_author (Number): Identifiant de l'auteur
 
-        Returns:
-            name_author: Retourne le nom de l'auteur
+    Returns:
+        name_author: Retourne le nom de l'auteur
     """
     data_user = get_user_model()
 
@@ -23,15 +24,16 @@ def get_name_author(id_author):
     except data_user.DoesNotExist:
         return "Utilisateur inconnu"
 
+
 def update_format_date(date):
     """
-       Modifie le format de la date
+    Modifie le format de la date
 
-       Args:
-           date (datetime): Date au format de base
+    Args:
+        date (datetime): Date au format de base
 
-       Returns:
-           formatted_date: Retourne la date modifiée
+    Returns:
+        formatted_date: Retourne la date modifiée
     """
 
     formatted_date = date.strftime("%H:%M, %d %B %Y")
@@ -47,7 +49,7 @@ def update_format_date(date):
         "September": "septembre",
         "October": "octobre",
         "November": "novembre",
-        "December": "décembre"
+        "December": "décembre",
     }
 
     for en, fr in months.items():

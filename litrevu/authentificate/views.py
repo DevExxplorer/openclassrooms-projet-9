@@ -1,15 +1,16 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import logout, login
+from django.contrib.auth import login
 from .forms import SubscribeForm
+
 
 def subscribe(request):
     """
-        Vue qui affiche la page d'inscription
+    Vue qui affiche la page d'inscription
 
-        Args:
-            request (HttpRequest): Objet représentant la requête HTTP
+    Args:
+        request (HttpRequest): Objet représentant la requête HTTP
     """
-    if request.method == 'POST':
+    if request.method == "POST":
         form = SubscribeForm(request.POST)
 
         if form.is_valid():
@@ -21,10 +22,5 @@ def subscribe(request):
         form = SubscribeForm()
 
     return render(
-        request,
-        'authentificate/subscribe.html',
-        {
-            'form': form,
-            'show_label': False
-        }
+        request, "authentificate/subscribe.html", {"form": form, "show_label": False}
     )
