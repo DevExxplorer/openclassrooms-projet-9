@@ -64,6 +64,10 @@
   color: #006b1b;
 }
 
+li {
+  list-style: none;
+}
+
 form {
   display: flex;
   flex-direction: column;

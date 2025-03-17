@@ -168,7 +168,10 @@ def update_review(request, review_pk):
     review = get_object_or_404(Review, id=review_pk)
     ticket = review.ticket
     ticket = update_data(ticket, request.user)
-    data_form = add_new_data(request, "review", ticket, review)
+    authentificate_user = request.user
+
+    if authentificate_user == review.user:
+        data_form = add_new_data(request, "review", ticket, review)
 
     if data_form["valid"]:
         return redirect("posts")
@@ -210,6 +213,8 @@ def delete_post(request, id_post):
 
         if authentificate_user == post.user:
             post.delete()
+        else:
+            return redirect("/")
 
         if request.headers.get("X-Requested-With") == "XMLHttpRequest":
             return JsonResponse({"success": True})
